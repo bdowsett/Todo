@@ -1,5 +1,6 @@
 package com.example.simpletodo.ui.to_list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,7 +34,11 @@ class TodoListViewModel @Inject constructor(
                 sendUiEvent(UiEvent.Navigate(Routes.ADD_EDIT_TODO))
             }
             is TodoListEvent.OnUndoDeleteClick -> {
-
+                    deletedTodo?.let{ todo ->
+                        viewModelScope.launch {
+                            repository.insertTodo(todo)
+                        }
+                    }
             }
 
             is TodoListEvent.OnDeleteTodoClick -> {
@@ -56,7 +61,7 @@ class TodoListViewModel @Inject constructor(
     }
 
     private fun sendUiEvent(event:UiEvent){
-        viewModelScope.launch { event }
+        viewModelScope.launch { _uiEvent.send(event) }
     }
 
 }

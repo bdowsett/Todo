@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.simpletodo.ui.theme.SimpleToDoTheme
+import com.example.simpletodo.ui.to_list.ToDoListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SimpleToDoTheme {
-
+                    ToDoListScreen(onNavigate = {})
             }
         }
 

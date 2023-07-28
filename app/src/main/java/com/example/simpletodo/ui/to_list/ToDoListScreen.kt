@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -21,6 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.simpletodo.util.UiEvent
 import kotlinx.coroutines.coroutineScope
@@ -63,7 +65,7 @@ fun ToDoListScreen(
         }
     }
 
-    Scaffold(floatingActionButton = {
+    Scaffold(modifier = Modifier.padding(start = 12.dp), floatingActionButton = {
         FloatingActionButton(onClick = { viewModel.onEvent(TodoListEvent.OnAddTodoClick) }) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "add")
 
